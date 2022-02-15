@@ -1,8 +1,8 @@
 public class Converter {
 
     void wastingCall(int stepTracker){
-
-        float Call=stepTracker*50;
+        final int oneStepsCall = 50 ;
+        float Call=stepTracker * oneStepsCall;
         if (Call>1000){
             float KCall = Call/1000;
             System.out.println("За этот месяц вы сожгли " + KCall +" килокалорий");
@@ -10,13 +10,13 @@ public class Converter {
             System.out.println("За этот месяц вы сожгли " + Call +" калорий");
         }
     }
-    void Distance(int stepTracker) {
-
-        float distans= stepTracker *75;
+    void distance(int stepTracker) {
+        final int oneStepsSantimetr = 75;
+        float distans= stepTracker * oneStepsSantimetr;
         if (distans>100000) {
-            float k = (distans/100000); //123455
-            String km=String.format("За этот месяц вы прошли: %.3f километров",k);
-            System.out.println(km);
+            float km = (distans/100000);
+            String kilometer=String.format("За этот месяц вы прошли: %.3f километров",km);
+            System.out.println(kilometer);
         }else if(distans>100){
             float m = (distans/100);
             String metr=String.format("За этот месяц вы прошли: %.2f метров",m);
@@ -25,7 +25,5 @@ public class Converter {
 
             System.out.println("За этот месяц вы прошли: "+ distans + " сантиметров");
         }
-
-
     }
 }

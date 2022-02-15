@@ -1,51 +1,30 @@
-
 import java.util.HashMap;
-
-
-
 
 public class StepTracker {
     MonthData monthData = new MonthData();
     Converter converter = new Converter();
     int TargetSteps =10000;
-
     HashMap<Integer, MonthData> monthToData = new HashMap<Integer, MonthData>();
-
     public StepTracker() {
-
         for (int i = 1; i < 13; i++) {
-
             monthToData.put(i, new MonthData());
         }
     }
 
-
-    int SaveTargetStep(int targetStep) {
-
-
+    int saveTargetStep(int targetStep) {
         if (targetStep > 0) {
-
             System.out.println("Данные сохранены !");
             TargetSteps=targetStep;
-            System.out.println(targetStep);
-
-
         } else {
             System.out.println("Введите кол.шагов заново");
             targetStep = 0;
-
         }
-
         return targetStep;
-
-
     }
 
 
     public class MonthData {
         HashMap<Integer, Integer> hashMap = new HashMap<>() ;
-
-
         public MonthData() {
 
             for (int i = 1; i < 31; i++) {
@@ -53,17 +32,16 @@ public class StepTracker {
                     hashMap.put(i, 0);
                 }
             }
-
-
         }
-        int SaveStaps(int InputMonth, int InputDay, int InputSteps) {
-            boolean d = (InputMonth<12)&&(InputDay<30);
+
+        int saveStaps(int inputMonth, int inputDay, int inputSteps) {
+            boolean d = (inputMonth<12)&&(inputDay<30);
             if (d){
                 for (Integer month : monthToData.keySet()) {
-                    if (month == InputMonth) {
+                    if (month == inputMonth) {
                         for (Integer day : hashMap.keySet()) {
-                            if (InputDay == day) {
-                                hashMap.put(day,InputSteps);
+                            if (inputDay == day) {
+                                hashMap.put(day,inputSteps);
 
                             }
                         }
@@ -72,15 +50,15 @@ public class StepTracker {
                 }
             }else {
                 System.out.println("Введиет данные заново!");
-                InputMonth=13;
+                inputMonth=13;
             }
-            return InputMonth;
+            return inputMonth;
         }
 
-        int SumStepMonth(int InputMonth) {
+        int sumStepMonth(int inputMonth) {
             int sum = 0;
             for (Integer month : monthToData.keySet()) {
-                if (month == InputMonth) {
+                if (month == inputMonth) {
                     for (Integer s:hashMap.values()){
                         sum+=s;
                     }
@@ -90,9 +68,9 @@ public class StepTracker {
             return sum;
         }
 
-        void Statistic(int InputMonth) {
+        void statistic(int inputMonth) {
             for (Integer month : monthToData.keySet()) {
-                if (month == InputMonth) {
+                if (month == inputMonth) {
                     for (Integer d :hashMap.keySet()) {
                         System.out.println(d + " день: " + hashMap.get(d));
 
@@ -100,21 +78,21 @@ public class StepTracker {
                 }
             }
 
-            System.out.println("Общее кол шагов за месяц: "+ monthData.SumStepMonth(InputMonth));
-            System.out.println("Максимальное пройденное количество шагов в месяце: "+ monthData.MaxStepMonth(InputMonth));
-            monthData.AverageSteps(InputMonth);
-            converter.Distance(monthData.SumStepMonth(InputMonth));
-            converter.wastingCall(monthData.SumStepMonth(InputMonth));
-            System.out.println("Лучшая серия: "+ monthData.BestDaySeries(InputMonth));
+            System.out.println("Общее кол шагов за месяц: "+ monthData.sumStepMonth(inputMonth));
+            System.out.println("Максимальное пройденное количество шагов в месяце: "+ monthData.maxStepMonth(inputMonth));
+            monthData.averageSteps(inputMonth);
+            converter.distance(monthData.sumStepMonth(inputMonth));
+            converter.wastingCall(monthData.sumStepMonth(inputMonth));
+            System.out.println("Лучшая серия: "+ monthData.bestDaySeries(inputMonth));
 
 
 
         }
 
-        int MaxStepMonth(int InputMonth){
+        int maxStepMonth(int inputMonth){
             int max = 0;
             for (Integer month : monthToData.keySet()) {
-                if (month == InputMonth) {
+                if (month == inputMonth) {
                     for (Integer s:hashMap.values()){
                             if (s>max){
                                 max=s;
@@ -128,12 +106,12 @@ public class StepTracker {
 
         }
 
-        void AverageSteps(int InputMonth) {
+        void averageSteps(int inputMonth) {
             double sum = 0;
             double avgStep = 0;
             int size=hashMap.size();
             for (Integer month : monthToData.keySet()) {
-                if (month == InputMonth) {
+                if (month == inputMonth) {
                     for (Integer s:hashMap.values()){
                         sum+=s;
                     }
@@ -146,11 +124,12 @@ public class StepTracker {
             System.out.println(steps);
 
         }
-        int BestDaySeries(int InputMonth) {
+
+        int bestDaySeries(int inputMonth) {
             int startserise = 0;
             int maxserise=0;
             for (Integer month : monthToData.keySet()) {
-                if (month == InputMonth) {
+                if (month == inputMonth) {
                     for (Integer day : hashMap.values()) {
                         if (day >=TargetSteps){
                             startserise++;
@@ -165,34 +144,9 @@ public class StepTracker {
                     if (startserise>maxserise){
                         maxserise=startserise;
                     }
-
                 }
-
             }
-
             return maxserise;
         }
-
-
+     }
     }
-
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

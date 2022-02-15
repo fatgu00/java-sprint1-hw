@@ -7,10 +7,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         StepTracker stepTracker = new StepTracker();
 
-
-
-
-
         printMenu();
         int userInput = scanner.nextInt();
 
@@ -18,43 +14,26 @@ public class Main {
             if(userInput==1){
 
                 System.out.println("Введите месяц");
-                int InputMonth = scanner.nextInt();
+                int inputMonth = scanner.nextInt();
                 System.out.println("Введиет день");
-                int InputDay = scanner.nextInt();
+                int inputDay = scanner.nextInt();
                 System.out.println("Введиет количество шагов");
-                int InputSteps = scanner.nextInt();
-                stepTracker.monthData.SaveStaps(InputMonth,InputDay,InputSteps);
-                // boolean d=(InputMonth<12)&&(InputDay<30);
-
-
-                // while (!d){
-                    //     System.out.println("Введите месяц");
-                    //     InputMonth = scanner.nextInt();
-                    //     System.out.println("Введиет день");
-                    //     InputDay = scanner.nextInt();
-                    //     System.out.println("Введиет количество шагов");
-                    //     InputSteps = scanner.nextInt();
-
-                    //     stepTracker.monthData.SaveStaps(InputMonth,InputDay,InputSteps);
-
-
-                    // }
-
-
+                int inputSteps = scanner.nextInt();
+                stepTracker.monthData.saveStaps(inputMonth,inputDay,inputSteps);
 
             }else if(userInput == 2){
                 System.out.println("Введите месяц");
-                int InputMonth = scanner.nextInt();
-                stepTracker.monthData.Statistic(InputMonth);
+                int inputMonth = scanner.nextInt();
+                stepTracker.monthData.statistic(inputMonth);
 
             }else if(userInput==3){
                 System.out.println("Введите цель!");
 
                     int targetStep = scanner.nextInt();
-                    stepTracker.SaveTargetStep(targetStep);
+                    stepTracker.saveTargetStep(targetStep);
                     while (targetStep<0){
                         targetStep = scanner.nextInt();
-                        stepTracker.SaveTargetStep(targetStep);
+                        stepTracker.saveTargetStep(targetStep);
                     }
 
             }else {
@@ -66,6 +45,7 @@ public class Main {
             printMenu(); // печатем меню ещё раз перед завершением предыдущего действия
             userInput = scanner.nextInt(); // повторное считывание данных от пользователя
         }
+        scanner.close();
         System.out.println("Программа завершена");
     }
 
@@ -77,4 +57,3 @@ public class Main {
         System.out.println("0 - Выход");
     }
 }
-
